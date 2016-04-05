@@ -7,6 +7,16 @@
 		<title>Home - Cadastro de Palavras</title>
 	</head>
 	<body>
+		<header>
+			<h1> O Jogo da Forca</h1>
+		</header>
+		
+		<footer>
+			<p> Desenvolvido por: </p>
+			<p> Daniel Teixeira - 135026-9 </p>
+			<p> Gabriel Sousa Kraszczuk - 135025-1 </p>
+			<p> &copy; 2016 - Todos os Direitos Reservados </p>
+		</footer>
 
 	</body>
 </html>

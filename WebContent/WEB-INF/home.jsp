@@ -10,7 +10,17 @@
 		<header>
 			<h1> O Jogo da Forca</h1>
 		</header>
-		
+		<section>
+			<h3> Cadastro de Palavras</h3>
+			<p>Olá caro usuário, logo abaixo você deve cadastrar palavras para iniciar no jogo. </p>
+			<form action="/cadastro-palavras" method="POST">
+				<label> Palavras </label>
+				<input type="text" name="palavra">
+				<button type="submit">Cadastrar Palavras</button>
+				<button type="Reset">Limpar Palavras</button>
+				<button type="button" href="/jogar" ${podeJogar}>Jogar</button>
+			</form>
+		</section>
 		
 		<footer>
 			<p> Desenvolvido por: </p>

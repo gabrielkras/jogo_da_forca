@@ -2,7 +2,7 @@
     <wb-module deploy-name="Jogo da Forca">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="Jogo_da_Velha"/>
         <property name="java-output-path" value="/Jogo da Forca/build/classes"/>
+        <property name="context-root" value="forca"/>
     </wb-module>
 </project-modules>

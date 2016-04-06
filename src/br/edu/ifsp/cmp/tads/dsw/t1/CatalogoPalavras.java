@@ -12,6 +12,8 @@ public class CatalogoPalavras {
 	}
 	
 	public String getPalavra() {
+		if (palavras.isEmpty()) return null;
+		
 		String palavra = palavras.get(new Random().nextInt(palavras.size()));
 		
 		palavras.remove(palavra);

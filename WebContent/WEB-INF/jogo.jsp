@@ -6,20 +6,21 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Jogo da Forca</title>
+		<link rel="stylesheet" href="<c:url value="/jogo.css" />">
 	</head>
 	<body>
 		<header>
 			<h1>Jogo da Forca</h1>
 		</header>
 		<section>
-			<c:forEach var="elemento" items="${palavra}">
-				<span> <c:out value="${elemento}" /> </span>
-			</c:forEach>
-			<p>
-				Chute uma letra
-			</p>
+			<ol class="letras">
+				<c:forEach var="letra" items="${forca.palavra.toCharArray()}">
+					<li class="letra"></li>
+				</c:forEach>
+			</ol>
+			
 			<form method="POST">
-				<label for="letra">Forca</label>
+				<label for="letra">Chute uma letra</label>
 				<input type="text" name="letra" id="letra" size="2">
 				<button type="submit">Chutar!</button>
 			</form>

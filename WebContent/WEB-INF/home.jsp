@@ -13,7 +13,9 @@
 		<section>
 			<h3> Cadastro de Palavras</h3>
 			<p>Olá caro usuário, logo abaixo você deve cadastrar palavras para iniciar no jogo. </p>
-			<form action="/cadastro-palavras" method="POST">
+			<p> Para que você possa jogar, antes é necessário que você cadastre no mínimo 5 palavras </p>
+			<form action="cadastro-palavras" method="POST">
+				<label> Ainda faltam cadastrar ${quantidadeDePalavras}/5</label>
 				<label> Palavras </label>
 				<input type="text" name="palavra">
 				<button type="submit">Cadastrar Palavras</button>

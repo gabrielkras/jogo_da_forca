@@ -31,4 +31,8 @@ public class CatalogoPalavras {
 	public void limparCatalogo() {
 		palavras.clear();
 	}
+	
+	public int quantidadeDePalavras(){
+		return palavras.size();
+	}
 }

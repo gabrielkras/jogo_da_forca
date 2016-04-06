@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
@@ -11,10 +12,13 @@
 			<h1>Jogo da Forca</h1>
 		</header>
 		<section>
+			<c:forEach var="elemento" items="${palavra}">
+				<spam> <c:out value="${elemento}" /> </spam>
+			</c:forEach>
 			<p>
 				Chute uma letra
 			</p>
-			<form action="/cadastro-palavras" method="POST">
+			<form method="POST">
 				<label for="letra">Forca</label>
 				<input type="text" name="letra" id="letra" length="2">
 				<button type="submit">Chutar!</button>

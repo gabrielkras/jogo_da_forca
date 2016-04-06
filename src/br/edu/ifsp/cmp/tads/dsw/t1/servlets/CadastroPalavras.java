@@ -29,12 +29,6 @@ public class CadastroPalavras extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*HttpSession sessao = request.getSession();
-		if(sessao.getAttribute("catalogo") != null){
-			if(request.getAttribute("palavra") != null){
-				System.out.println(request.getAttribute("palavra"));
-			}
-		}*/
 		request.setAttribute("podeJogar", "disabled");
 		request.setAttribute("quantidadeDePalavras", "0");
 		request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);

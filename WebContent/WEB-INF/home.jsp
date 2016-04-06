@@ -20,7 +20,7 @@
 				<input type="text" name="palavra">
 				<button type="submit">Cadastrar Palavras</button>
 				<button type="Reset">Limpar Palavras</button>
-				<button type="button" href="/jogar" ${podeJogar}>Jogar</button>
+				<a href="jogar"> <button type="button" ${podeJogar}>Jogar</button></a>
 			</form>
 		</section>
 		

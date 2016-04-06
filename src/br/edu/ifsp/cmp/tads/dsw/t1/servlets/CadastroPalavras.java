@@ -10,33 +10,20 @@ import javax.servlet.http.HttpSession;
 
 import br.edu.ifsp.cmp.tads.dsw.t1.CatalogoPalavras;
 
-/**
- * Servlet implementation class CadastroPalavras
- */
-@WebServlet(description = "Servlet que realiza o cadastro das palavras", urlPatterns = { "/cadastro-palavras" })
+@WebServlet("/cadastro-palavras" )
 public class CadastroPalavras extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public CadastroPalavras() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("podeJogar", "disabled");
 		request.setAttribute("quantidadeDePalavras", "0");
 		request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession sessao = request.getSession();
 		if(sessao.getAttribute("catalogo") != null){

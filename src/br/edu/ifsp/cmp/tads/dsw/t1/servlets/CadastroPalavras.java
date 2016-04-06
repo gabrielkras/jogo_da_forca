@@ -1,53 +1,40 @@
 package br.edu.ifsp.cmp.tads.dsw.t1.servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import br.edu.ifsp.cmp.tads.dsw.t1.CatalogoPalavras;
 
 @WebServlet("/cadastro-palavras" )
-public class CadastroPalavras extends HttpServlet {
+public class CadastroPalavras extends ForcaServlet {
 	private static final long serialVersionUID = 1L;
        
-    public CadastroPalavras() {
-        super();
-    }
-
+    public CadastroPalavras() { super(); }
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("podeJogar", "disabled");
 		request.setAttribute("quantidadeDePalavras", "0");
-		request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+		
+		render(request, response, "home");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession sessao = request.getSession();
-		if(sessao.getAttribute("catalogo") != null){
-			if(request.getParameter("palavra") != null){
-				CatalogoPalavras catalogo = (CatalogoPalavras) sessao.getAttribute("catalogo");
-				catalogo.addPalavra(request.getParameter("palavra"));
-			}
-		}
-		else{
-			CatalogoPalavras catalogo = new CatalogoPalavras();
-			catalogo.addPalavra(request.getParameter("palavra"));
-			sessao.setAttribute("catalogo", catalogo);
-		}
-		CatalogoPalavras catalogoDaSessao = (CatalogoPalavras) sessao.getAttribute("catalogo");
-		if(catalogoDaSessao.quantidadeDePalavras() >= 5)
-		{
-			request.setAttribute("podeJogar", "");
-			request.setAttribute("quantidadeDePalavras", catalogoDaSessao.quantidadeDePalavras());
-			request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
-		}
-		else{
-			request.setAttribute("podeJogar", "disabled");
-			request.setAttribute("quantidadeDePalavras", catalogoDaSessao.quantidadeDePalavras());
-			request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
-		}
+		CatalogoPalavras catalogo = getCatalogoPalavras(request);
+		String palavra = request.getParameter("palavra");
+		
+		catalogo.addPalavra(palavra);
+		
+		request.setAttribute("podeJogar", podeJogar(catalogo) ? "" : "disabled");
+		request.setAttribute("quantidadeDePalavras", catalogo.quantidadeDePalavras());
+		
+		render(request, response, "home");
+	}
+	
+	private boolean podeJogar(CatalogoPalavras catalogo) {
+		return catalogo.quantidadeDePalavras() >= 5;
 	}
 }

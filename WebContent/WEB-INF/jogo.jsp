@@ -13,14 +13,14 @@
 		</header>
 		<section>
 			<c:forEach var="elemento" items="${palavra}">
-				<spam> <c:out value="${elemento}" /> </spam>
+				<span> <c:out value="${elemento}" /> </span>
 			</c:forEach>
 			<p>
 				Chute uma letra
 			</p>
 			<form method="POST">
 				<label for="letra">Forca</label>
-				<input type="text" name="letra" id="letra" length="2">
+				<input type="text" name="letra" id="letra" size="2">
 				<button type="submit">Chutar!</button>
 			</form>
 		</section>

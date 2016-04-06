@@ -30,6 +30,10 @@
 			<p> Gabriel Sousa Kraszczuk - 135025-1 </p>
 			<small> &copy; 2016 - Todos os Direitos Reservados </small>
 		</footer>
-
+		<script type="text/javascript">
+			document.addEventListener("DOMContentLoaded", function () {
+				document.querySelector('input[type="text"]').focus();
+			});
+		</script>
 	</body>
 </html>

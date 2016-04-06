@@ -54,8 +54,8 @@ public class JogoForca extends HttpServlet {
 	private void iniciaJogo(HttpServletRequest request, String palavra) {
 		HttpSession session = request.getSession();
 		Jogo jogo = new Jogo(palavra);
-		session.setAttribute("forca", jogo);
 		request.setAttribute("palavra", jogo.getPalavra());
+		session.setAttribute("forca", jogo);
 	}
 	
 	private Jogo getJogo(HttpServletRequest request) {

@@ -15,15 +15,49 @@
 		<section>
 			<ol class="letras">
 				<c:forEach var="letra" items="${forca.palavra.toCharArray()}">
-					<li class="letra"></li>
+					<li class="letra">
+						<c:if test="${forca.chutes.contains(letra)}">
+							<span><c:out value="${letra}" /></span>
+						</c:if>
+					</li>
 				</c:forEach>
 			</ol>
 			
-			<form method="POST">
-				<label for="letra">Chute uma letra</label>
-				<input type="text" name="letra" id="letra" size="2">
-				<button type="submit">Chutar!</button>
-			</form>
+			<c:choose>
+				<c:when test="${jogo.venceu()}">
+					<p>
+						Parabéns! Você acertou <strong><c:out value="${jogo.palavra}" /></strong>
+					</p>
+					<a href="<c:url value="/jogar" />">Tentar outra palavra</a>
+				</c:when>
+				<c:when test="${jogo.perdeu()}">
+					<p>
+						Errou! A palavra era <strong><c:out value="${jogo.palavra}" /></strong>
+					</p>
+					<a href="<c:url value="/jogar" />">Tentar outra palavra</a>
+				</c:when>
+				<c:otherwise>
+					<form method="POST">
+						<label for="letra">Chute uma letra</label>
+						<input type="text" name="letra" id="letra" size="2" />
+						<button type="submit">Chutar!</button>
+					</form>
+				</c:otherwise>
+			</c:choose>
+			
+			
+			<p class="chutes">
+				Chutes:
+				<c:if test="${empty forca.chutes}">-</c:if>
+				<c:forEach var="letra" items="${forca.chutes}">
+					<span class="letra"><c:out value="${letra}" /></span>
+				</c:forEach>
+			</p>
+			<c:if test="${!forca.perdeu()}">
+				<p>
+					Você ainda tem <span class="chutes-restantes"><c:out value="${forca.chutesRestantes}" /></span> chutes!
+				</p>
+			</c:if>
 		</section>
 		
 		<footer>

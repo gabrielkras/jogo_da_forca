@@ -27,12 +27,13 @@ public abstract class ForcaServlet extends ApplicationServlet {
 	}
 	
 	protected Jogo getJogo(HttpServletRequest request) {
-		return (Jogo) request.getAttribute(JOGO_ATTRIBUTE_KEY);
+		return (Jogo) request.getSession().getAttribute(JOGO_ATTRIBUTE_KEY);
 	}
 	
 	protected void iniciaJogo(HttpServletRequest request, String palavra) {
 		Jogo jogo = new Jogo(palavra);
 		
+		request.getSession().setAttribute(JOGO_ATTRIBUTE_KEY, jogo);
 		request.setAttribute(JOGO_ATTRIBUTE_KEY, jogo);
 	}
 }

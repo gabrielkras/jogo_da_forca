@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.edu.ifsp.cmp.tads.dsw.t1.CatalogoPalavras;
 import br.edu.ifsp.cmp.tads.dsw.t1.Jogo;
 
 @WebServlet("/jogar")
@@ -26,14 +27,18 @@ public class JogoForca extends ForcaServlet {
 		}
 	}
 
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Jogo jogo = getJogo(request);
 		
 		if (jogo == null) {
 			doGet(request, response);
 		} else {
-			// lê o chute; atualiza o jogo
+			String letra = request.getParameter("letra").toString();
+			
+			if (!letra.isEmpty()) {
+				jogo.chutar(letra.charAt(0));
+			}
+			
 			request.setAttribute("jogo", jogo);
 			render(request, response, "jogo");
 		}

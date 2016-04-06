@@ -9,11 +9,13 @@ public class Jogo {
 	private String palavra;
 	private Set<Character> letras;
 	private Set<Character> chutes;
+	private int erros;
 	private int maxChutes = MAX_CHUTES_PADRAO;
 	
 	public Jogo(String palavra) {
 		this.palavra = palavra;
 		
+		erros = 0;
 		chutes = new HashSet<>();
 		letras = new HashSet<Character>();
 		for (Character letra : palavra.toCharArray()) { letras.add(letra); }
@@ -29,18 +31,33 @@ public class Jogo {
 		return palavra;
 	}
 	
+	public int getErros() {
+		return erros;
+	}
+	
 	public Set<Character> getChutes() {
 		return chutes;
 	}
 	
+	public Set<Character> getLetras() {
+		return letras;
+	}
+	
+	public int getChutesRestantes() {
+		return maxChutes - getErros();
+	}
+	
 	public boolean chutar(Character letra) {
 		if (limiteDeChutesAtingido()) return false;
+		if (chutes.contains(letra)) return false;
 		
 		boolean acertou = false;
 		
 		acertou = letras.contains(letra);
 		letras.remove(letra);
 		chutes.add(letra);
+
+		if (!acertou) erros++;
 		
 		return acertou;
 	}
@@ -51,7 +68,15 @@ public class Jogo {
 		return letras.isEmpty();
 	}
 	
+	public boolean perdeu() {
+		return limiteDeChutesAtingido();
+	}
+	
+	public boolean fimDeJogo() {
+		return perdeu() || venceu();
+	}
+	
 	private boolean limiteDeChutesAtingido() {
-		return chutes.size() >= maxChutes;
+		return getChutesRestantes() < 1;
 	}
 }
